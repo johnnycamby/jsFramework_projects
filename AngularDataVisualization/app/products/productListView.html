@@ -1,0 +1,45 @@
+
+<div class="panel panel-primary" style="border-color: lightblue;">
+    <div class="panel-heading" style="font-size: large; background-color: lightblue; border-color: lightblue;">Product List</div>
+    <div class="panel-body">
+        <table  class="table table-responsive ">
+            <thead>
+            <tr>
+                <td>
+                    <button class="btn btn-primary btn-sm" type="button" ng-click="vm.toggleImage()">
+                        {{vm.showImage ? 'Hide' : 'Show'}} Image
+                    </button>
+                </td>
+                <td>Product</td>
+                <td>Code</td>
+                <td>Available</td>
+                <td>Price</td>
+			</tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="product in vm.products">
+                <td>
+                    <img ng-if="vm.showImage"
+                         ng-src="{{product.imageUrl}}"
+                         title="{{product.productName}}"
+                         style="width: 50px; margin: 2px;">
+                </td>
+                <td>
+                    <a ui-sref="productDetail({productId: product.productId})">{{product.productName}}</a>
+                </td>
+                <td>{{product.productCode}}</td>
+                <td>{{product.releaseDate}}</td>
+                <td>{{product.price | currency}}</td>
+                <td>
+                    <a class="btn btn-primary btn-sm" ui-sref="productEdit.info({productId: product.productId})">
+                        Edit
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>

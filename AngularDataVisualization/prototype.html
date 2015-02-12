@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Xplicit Line Of Business App ::- </title>
+</head>
+<body ng-app>
+
+<table ng-init="products = [
+{
+  'productId' : 1,
+  'productName' : 'Leaf Rake',
+  'productCode' : 'GDN-0011',
+  'releaseDate' : 'March 19, 2010',
+  'description' : 'Leaf rake with 48-inch handle',
+  'cost' : 9.00,
+  'price' : 19.95,
+  'category' : 'garden',
+  'tags': ['leaf', 'tool'],
+  'imageUrl' : 'https://openclipart.org/image/300px/svg_to_png/58471/garden_cart.png'
+},
+{
+  'productId' : 5,
+  'productName' : 'Hammer',
+  'productCode' : 'TBX-0048',
+  'releaseDate' : 'May 19, 2014',
+  'description' : 'Curved claw steel hammer',
+  'cost' : 10.00,
+  'price' : 20.95,
+  'category' : 'toolbox',
+  'tags': ['tool'],
+  'imageUrl' : 'https://openclipart.org/image/300px/svg_to_png/14358/mystica_Hammer.png'
+}
+
+
+]">
+    <thead>
+    <tr>
+        <td>Image</td>
+        <td>Product</td>
+        <td>Code</td>
+        <td>Available</td>
+        <td>Price</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="product in products">
+        <td>
+            <img ng-src="{{product.imageUrl}}" title="{{product.productName}}" style="width: 50px; margin: 2px;">
+        </td>
+        <td>{{product.productName}}</td>
+        <td>{{product.productCode}}</td>
+        <td>{{product.releaseDate}}</td>
+        <td>{{product.price | currency}}</td>
+    </tr>
+    </tbody>
+
+</table>
+
+</body>
+
+<!-- Library Scripts -->
+<script src="js/angular.min.js"></script>
+</html>

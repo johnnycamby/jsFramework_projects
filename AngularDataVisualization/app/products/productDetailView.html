@@ -1,0 +1,46 @@
+
+
+<div class="panel panel-primary">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-6">
+
+                <div class="row">
+                    <div class="col-md-2">Release Date:</div>
+                    <div class="col-md-6">{{vm.product.releaseDate | date}}</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2">Cost:</div>
+                    <div class="col-md-6">{{vm.product.cost | currency}}</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2">Price:</div>
+                    <div class="col-md-6">{{vm.product.price | currency}}</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2">Margin:</div>
+                    <div class="col-md-6">{{vm.marginPercent | number:0 }}%</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2">Tags:</div>
+                    <div class="col-md-6">{{vm.product.tagList}}</div>
+                </div>
+
+
+            </div>
+
+            <div class="col-md-6">
+                <img class="center-block img-responsive"
+                        style="width: 200px; margin: 2px;"
+                        ng-src="{{vm.product.imageUrl}}"
+                        title="{{vm.product.productName}}"
+                        >
+            </div>
+
+        </div>
+    </div>
+</div>
