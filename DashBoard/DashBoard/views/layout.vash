@@ -1,0 +1,65 @@
+﻿
+<!doctype html>
+<html>
+  <head>
+    <title>@model.title</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/css/bootstrap-theme.min.css" rel="stylesheet"/>
+    @html.block("head")
+    <link href="/css/site.css" rel="stylesheet"/>
+  </head>
+   <body>
+     
+       <div class="navbar navbar-default " role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button class="btn btn-success navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="glyphicon glyphicon-chevron-down"></span>
+        </button>
+        <div id="logo">
+          <a href='/'>
+            <h4>DashBoard::-</h4>
+          </a>
+          @if(model.user){
+           <div>@model.user.name</div>
+         }
+        </div>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="nav">
+            <a href="/">Home</a>
+          </li>
+          <li class="nav">
+            <a href="/register">Register</a>
+          </li>
+          <li class="nav">
+            <a href="/login">Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <section id="body" class="container">
+    <div class="page-header">
+      <h1>@model.title</h1>
+    </div>
+    @html.block("body")
+  </section>
+  <hr />
+  <footer class="container">
+    <p>DashBoard ::-</p>
+  </footer>
+
+
+     <script src="/lib/jquery.min.js"></script>
+     <script src="/lib/angular.min.js"></script>
+     <script src="/lib/ui-bootstrap-tpls-0.11.2.min.js"></script>
+     <script src="/lib/bootstrap.min.js"></script>
+     <script src="/lib/underscore-min.js"></script>
+     
+     @html.block("scripts")
+     
+   </body>
+</html>

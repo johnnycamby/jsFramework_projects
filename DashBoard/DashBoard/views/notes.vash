@@ -1,0 +1,58 @@
+﻿
+@html.extend('layout', function(model){
+  
+  @html.block('scripts', function(model){
+    
+	<script src="/js/socket.io.js"></script>
+	<script src="/js/app.js"></script>
+	 <script src="/js/notesViewCtrl.js"></script>
+	 
+  })
+
+    @html.block('body', function(model){
+	  
+	  <div ng-app="mainApp">
+	     <a href="/" class="btn btn-info">Back</a>
+		 
+	   <div ng-controller="notesViewController as vm">
+		 <div class="note" ng-repeat="n in vm.notes" ng-class="'note-' + n.color">
+		    <div>{{ n.note }}</div>
+			<div class="note-author">
+			  <small>-{{n.author}}</small>
+			</div>
+		 </div>
+		 
+ <form role="form" class="form-horizontal" name="newNoteForm" ng-submit="vm.save()">
+   <div class="form-group">
+     <label class="control-label col-lg-1">Color</label>
+     <div class="col-lg-5">
+       <div class="btn-group">
+        <button ng-model="vm.newNote.color" type="button" class="btn btn-primary btn-sm" btn-radio="'yellow'">Yellow</button>
+        <button ng-model="vm.newNote.color" type="button" class="btn btn-primary btn-sm" btn-radio="'blue'">Blue</button>
+        <button ng-model="vm.newNote.color" type="button" class="btn btn-primary btn-sm" btn-radio="'green'">Green</button>
+        <button ng-model="vm.newNote.color" type="button" class="btn btn-primary btn-sm" btn-radio="'orange'">Orange</button>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-lg-1">Content</label>
+    <div class="col-lg-5">
+      <textarea ng-model="vm.newNote.note" cols="30" rows="2" name="note" placeholder="Your Note" class="form-control" required maxlength="120"></textarea>
+      <span ng-show="newNoteForm.note.$error.required">Required</span>
+	  <p>{{120 - vm.newNote.note.length }}</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-lg-offset-1 col-lg-5">
+      <input type="submit" value="Save" class="btn btn-primary btn-sm" ng-disabled="newNoteForm.$invalid">
+    </div>
+  </div>
+</form>
+
+
+		 
+	    </div>
+	  </div>
+
+	   })
+	   })

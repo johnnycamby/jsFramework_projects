@@ -1,0 +1,31 @@
+{
+  "name": "DashBoard",
+  "version": "0.1.0",
+  "description": "DashBoard for sticky notes",
+  "main": "server.js",
+  "author": {
+    "name": "johnny camby",
+    "email": "johnnycamby@gmail.com"
+  },
+  "dependencies": {
+    "body-parser": "^1.9.1",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.3.3",
+    "ejs": "^1.0.0",
+    "ejs-locals": "^1.0.2",
+    "express": "^4.9.8",
+    "express-session": "^1.9.1",
+    "jade": "^1.7.0",
+    "mongodb": "^1.4.19",
+    "passport": "^0.2.1",
+    "passport-local": "^1.0.0",
+    "socket.io": "^1.2.0",
+    "socket.io-client": "^1.2.0",
+    "underscore": "^1.7.0",
+    "vash": "^0.7.12-1"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-nodemon": "^0.3.0"
+  }
+}

@@ -1,0 +1,2 @@
+D:\DEV\NODE\DashBoard\DashBoard\obj\Debug\DashBoard.njsprojResolveAssemblyReference.cache
+D:\DEV\NODE\DashBoard\DashBoard\bin\Microsoft.NodejsTools.WebRole.dll
