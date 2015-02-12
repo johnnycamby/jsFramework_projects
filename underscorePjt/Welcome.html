@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Year End Sales Summary</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/sales-summary.css" rel="stylesheet" media="screen">
+
+
+</head>
+<body>
+
+  <div id="layout-root" class="container-fluid">
+
+      <div class="row">
+          <div class="col-md-2 col-md-offset-1 push-down">
+              <img src="img/HotCribs2.png" alt="HotCribs, Inc." title="HotCribs">
+          </div>
+
+      </div>
+      <div class="row defer" id="toast-container">
+          <div class="col-md-10 col-md-offset-1">
+              <section>
+                  <h2>Sales By Month(in Millions)</h2>
+
+                  <script id="th-template" type="text/template">
+                      <th><%= value %></th>
+                  </script>
+
+                  <script id="td-class-name-template" type="text/template">
+                      <td class="<%= className %>"><%= value %></td>
+                  </script>
+
+                  <div id="sales-by-month-list-container">
+                      <table class="centered">
+                          <thead id="sales-by-month-thead">
+                            <tr><!-- td-template --></tr>
+                          </thead>
+                          <tbody id="sales-by-month-tbody">
+                            <tr><!-- td-class-name-template --></tr>
+                          </tbody>
+                      </table>
+                  </div>
+              </section>
+
+              <section>
+                  <script id="high-low-template" type="text/template">
+                      <b>Quick Facts</b>:
+                      Highest: <%= high %> |
+                      Lowest: <%= low %>  |
+                      Average: <%= average %>
+                  </script>
+                  <div id="quick-facts-container" class="text-muted">
+                      <!-- high-low-template -->
+                  </div>
+              </section>
+          </div>
+      </div>
+
+      <div class="row defer">
+          <div class="col-md-10 col-md-offset-1">
+              <section>
+                  <div class="row">
+                      <div class="col-md-8">
+                          <h2>Properties Sold:</h2>
+                      </div>
+                      <div class="col-md-4">
+                          <div id="filter-controls" class="pull-right">
+                              <button type="button" data-toggle="model" class="btn" data-target="#myModal">
+                                  <span class="glyphicon glyphicon-filter"></span>
+                              </button>
+
+                              <button class="btn" type="button" id="filter-clear-button" title="Clear Filter">
+                                  <span class="glyphicon glyphicon-remove"></span>
+                              </button>
+
+                          </div>
+                      </div>
+                  </div>
+
+                  <div id="properties-list-container">
+                      <!-- BEGIN: Rows Template -->
+                      <script id="properties-list-template" type="text/template">
+                          <div class="row divider">
+                              <div class="col-md-2 col-md-offset-1">
+                                  <img src="<%= imageURL %>" WIDTH="175" HEIGHT="116" />
+                              </div>
+                              <div class="col-md-3">
+                                  <address>
+                                      <%= streetAddress %> <br/>
+                                      <%= city %>, <%= state %> <%= zip %>
+                                  </address>
+                                  <p class="county-name"><%= county %> County</p>
+                                  <p>
+                                      <span class="glyphicon glyphicon-map-marker"></span><a href="#">Map</a>
+                                      <span class="glyphicon glyphicon-info-sign"></span><a href="#">More Info</a>
+                                  </p>
+                              </div>
+                              <div class="col-md-5">
+                                  <table class="table table-responsive table-bordered">
+                                      <tr>
+                                          <th>Bedrooms</th>
+                                          <td><%= bedrooms %></td>
+                                      </tr>
+                                      <tr>
+                                          <th>Bathrooms</th>
+                                          <td><%= bathrooms %></td>
+                                      </tr>
+                                      <tr>
+                                          <th>Square Feet</th>
+                                          <td><%= squarefeet %></td>
+                                      </tr>
+                                  </table>
+                                  <p><%= description %></p>
+                              </div>
+                          </div>
+                      </script>
+
+                      <!-- END: Rows Template -->
+
+                      <div id="properties-list">
+                          <!-- properties-list-template -->
+                      </div>
+
+                  </div>
+                  <div class="pull-right text-muted breathe">
+                      Number of Properties:
+                      <span id="propertiesCount"></span>
+                  </div>
+
+                  <!-- -->
+                  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                              <div class="modal-header">
+                                  <button type="button" class="close" dta-dismiss="modal" >
+                                      <span aria-hidden="true">&times;</span><span class="sr-only">x</span>
+                                  </button>
+                                  <h3 class="modal-title" id="myModalLabel">Filter Properties</h3>
+                              </div>
+                              <div class="modal-body">
+                                  <select id="county-select">
+                                      <option value="-1">[ County ]</option>
+                                  </select><br/>
+                                  <select id="city-select">
+                                      <option>[ City ]</option>
+                                  </select>
+                              </div>
+                              <div class="modal-footer">
+                                  <button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
+                                  <button class="btn btn-primary" data-dismiss="modal" id="filter-apply-button">
+                                      <span class="glyphicon glyphicon-filter"></span>Filter</button>
+                              </div>
+                          </div>
+                        </div>
+                  </div>
+
+
+                  <!-- -->
+
+              </section>
+
+              <section>
+                  <div id="commands" class="row">
+                      <div class="col-md-12">
+                          <div class="pull-right">
+                              <span id="sent-msg" class="alert alert-info hide">Sent</span>
+                              <button id="sent-to-marketing-button" type="button" class="btn ">
+                                  <span class="glyphicon glyphicon-tasks"> Send to Marketing</span>
+                              </button>
+                              <button id="sent-to-manager-button" type="button" class="btn ">
+                                  <i class="glyphicon glyphicon-user"> Send to Manager</i>
+                              </button>
+                          </div>
+                      </div>
+                  </div>
+              </section>
+          </div>
+      </div>
+
+  </div>
+
+ <footer class="defer">
+     Copyright &copy; HotCribs <small>- Pseudo Company ::- </small>
+ </footer>
+
+ <script src="js/jquery.min.js"></script>
+ <script src="js/jquery.mockjson.js"></script>
+ <script src="js/bootstrap.min.js"></script>
+ <script src="js/modules/underscore-min.js"></script>
+
+
+<script src="js/modules/mockjson.data.js"></script>
+<script src="js/modules/_mixins.js"></script>
+<script src="js/modules/data.js"></script>
+<script src="js/modules/renderer.js"></script>
+<script src="js/modules/viewmodel.js"></script>
+
+<script>
+
+    $(function(){
+
+        _.bindAll(vm);
+        vm.init();
+    });
+
+</script>
+</body>
+</html>
